@@ -122,7 +122,7 @@ class ModelTab(QWidget):
 
 
         edit_pivot_btn = PFToolButton(
-            icon=get_icon("modeling/edit_pivot.svg"),
+            icon=get_icon("modeling/editpivot.svg"),
             tooltip="Edit Pivot",
             click_callback=model.edit_pivot
         )
@@ -180,12 +180,276 @@ class ModelTab(QWidget):
         layout.addWidget(transform_group)
 
 
+
+        # ==================================================
+        # Component Selection
+        # ==================================================
+
+        component_group = PFGroup("Component Selection")
+
+
+        object_mode_btn = PFToggleButton(
+            text="Object",
+            callback=model.select_object_mode
+        )
+
+        vertex_btn = PFToggleButton(
+            text="Vertex",
+            callback=model.select_vertex_mode
+        )
+
+        edge_btn = PFToggleButton(
+            text="Edge",
+            callback=model.select_edge_mode
+        )
+
+        face_btn = PFToggleButton(
+            text="Face",
+            callback=model.select_face_mode
+        )
+
+
+        self.component_group = QButtonGroup()
+
+        self.component_group.addButton(object_mode_btn)
+        self.component_group.addButton(vertex_btn)
+        self.component_group.addButton(edge_btn)
+        self.component_group.addButton(face_btn)
+
+        self.component_group.setExclusive(True)
+
+        object_mode_btn.setChecked(True)
+
+
+        component_group.add(object_mode_btn)
+        component_group.add(vertex_btn)
+        component_group.add(edge_btn)
+        component_group.add(face_btn)
+
+        component_group.stretch()
+
+        layout.addWidget(component_group)
+        
+        
+
+
+
         # ==================================================
         # Modify
         # ==================================================
-        modify_group = PFGroup("Modify")
-        layout.addWidget(modify_group)
 
+        modify_group = PFGroup(
+            "Modify",
+            vertical=True
+        )
+
+
+        # ==================================================
+        # Object Operations
+        # ==================================================
+
+        object_ops_group = PFGroup("Object Operations")
+
+
+        combine_btn = PFToolButton(
+            icon=":polyUnite.png",
+            tooltip="Combine",
+            click_callback=model.combine,
+            right_click_callback=model.combine_options
+        )
+
+        separate_btn = PFToolButton(
+            icon=":polySeparate.png",
+            tooltip="Separate",
+            click_callback=model.separate,
+            right_click_callback=model.separate_options
+        )
+
+        extract_btn = PFToolButton(
+            icon=":polyChipOff.png",
+            tooltip="Extract",
+            click_callback=model.extract,
+            right_click_callback=model.extract_options
+        )
+
+        detach_btn = PFToolButton(
+            icon=":detach.png",
+            tooltip="Detach",
+            click_callback=model.detach,
+            right_click_callback=model.detach_options
+        )
+
+        mirror_btn = PFToolButton(
+            icon=":polyMirrorGeometry.png",
+            tooltip="Mirror",
+            click_callback=model.mirror,
+            right_click_callback=model.mirror_options
+        )
+
+
+        object_ops_group.add(combine_btn)
+        object_ops_group.add(separate_btn)
+        object_ops_group.add(extract_btn)
+        object_ops_group.add(detach_btn)
+        object_ops_group.add(mirror_btn)
+
+        object_ops_group.stretch()
+
+
+
+        # ==================================================
+        # Modeling
+        # ==================================================
+
+        modeling_group = PFGroup("Modeling")
+
+
+        weld_btn = PFToolButton(
+            icon=":weld_NEX32.png",
+            tooltip="Weld",
+            click_callback=model.weld,
+            right_click_callback=model.weld_options
+        )
+
+        extrude_btn = PFToolButton(
+            icon=":extrude.png",
+            tooltip="Extrude",
+            click_callback=model.extrude,
+            right_click_callback=model.extrude_options
+        )
+
+        bevel_btn = PFToolButton(
+            icon=":polyBevel.png",
+            tooltip="Bevel",
+            click_callback=model.bevel,
+            right_click_callback=model.bevel_options
+        )
+
+        bridge_btn = PFToolButton(
+            icon=":polyBridge.png",
+            tooltip="Bridge",
+            click_callback=model.bridge,
+            right_click_callback=model.bridge_options
+        )
+
+        multi_cut_btn = PFToolButton(
+            icon=":multiCut_NEX32.png",
+            tooltip="Multi Cut",
+            click_callback=model.multi_cut,
+            right_click_callback=model.multi_cut_options
+        )
+
+        connect_btn = PFToolButton(
+            icon=":connect_NEX32.png",
+            tooltip="Connect",
+            click_callback=model.connect,
+            right_click_callback=model.connect_options
+        )
+
+
+        modeling_group.add(weld_btn)
+        modeling_group.add(extrude_btn)
+        modeling_group.add(bevel_btn)
+        modeling_group.add(bridge_btn)
+        modeling_group.add(multi_cut_btn)
+        modeling_group.add(connect_btn)
+
+        modeling_group.stretch()
+
+
+
+        # ==================================================
+        # Refine
+        # ==================================================
+
+        refine_group = PFGroup("Refine")
+
+
+        smooth_btn = PFToolButton(
+            icon=":polySmooth.png",
+            tooltip="Smooth",
+            click_callback=model.smooth,
+            right_click_callback=model.smooth_options
+        )
+
+
+        adddivison_btn = PFToolButton(
+            icon=":addDivision24.png",
+            tooltip="Add Division",
+            click_callback=model.adddivision,
+            right_click_callback=model.adddivision_options
+        )
+
+
+
+    
+
+
+        refine_group.add(smooth_btn)
+        refine_group.add(adddivison_btn)
+      
+
+        refine_group.stretch()
+
+
+
+        # ==================================================
+        # Boolean
+        # ==================================================
+
+        boolean_group = PFGroup("Boolean")
+
+
+        union_btn = PFToolButton(
+             icon=":Bool_Union.png",
+            tooltip="Boolean Union",
+            click_callback=model.boolean_union,
+            right_click_callback=model.boolean_union_options
+        )
+
+        difference_ab_btn = PFToolButton(
+             icon=":Bool_dif.png",
+            tooltip="Boolean Difference (A - B)",
+            click_callback=model.boolean_difference_ab,
+            right_click_callback=model.boolean_difference_ab_options
+        )
+
+        difference_ba_btn = PFToolButton(
+             icon=":Bool_BMinusA.png",
+            tooltip="Boolean Difference (B - A)",
+            click_callback=model.boolean_difference_ba,
+            right_click_callback=model.boolean_difference_ba_options
+        )
+
+        intersection_btn = PFToolButton(
+             icon=":Bool_inter.png",
+            tooltip="Boolean Intersection",
+            click_callback=model.boolean_intersection,
+            right_click_callback=model.boolean_intersection_options
+        )
+
+
+        boolean_group.add(union_btn)
+        boolean_group.add(difference_ab_btn)
+        boolean_group.add(difference_ba_btn)
+        boolean_group.add(intersection_btn)
+
+        boolean_group.stretch()
+
+
+
+        # ==================================================
+        # Add Modify Sections
+        # ==================================================
+
+        modify_group.add(object_ops_group)
+        modify_group.add(modeling_group)
+        modify_group.add(refine_group)
+        modify_group.add(boolean_group)
+
+        modify_group.stretch()
+
+        layout.addWidget(modify_group)
 
         # ==================================================
         # Normals
@@ -199,14 +463,6 @@ class ModelTab(QWidget):
         # ==================================================
         utilities_group = PFGroup("Utilities")
         layout.addWidget(utilities_group)
-
-
-        # ==================================================
-        # Selection
-        # ==================================================
-        selection_group = PFGroup("Selection")
-        layout.addWidget(selection_group)
-
 
         # ==================================================
         # Display
