@@ -6,8 +6,12 @@ window = None
 def run():
     global window
 
-    if window:
-        window.close()
+    try:
+        if window:
+            window.close()
+            window.deleteLater()
+    except Exception:
+        pass
 
     window = PixelFoundryWindow()
     window.show()
