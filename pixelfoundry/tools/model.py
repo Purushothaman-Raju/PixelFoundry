@@ -65,3 +65,72 @@ def create_disc():
 
 def create_disc_options():
     mel.eval("CreatePolygonDiscOptions;")
+
+def move_tool():
+    cmds.setToolTo("moveSuperContext")
+
+
+def rotate_tool():
+    cmds.setToolTo("RotateSuperContext")
+
+
+def scale_tool():
+    cmds.setToolTo("scaleSuperContext")
+
+def move_tool_options():
+    mel.eval("MoveToolOptions")
+
+
+def rotate_tool_options():
+    mel.eval("RotateToolOptions")
+
+
+def scale_tool_options():
+    mel.eval("ScaleToolOptions")
+
+def edit_pivot():
+    cmds.ToggleRotatePivotMode()
+
+
+def center_pivot():
+    cmds.xform(cp=True)
+
+
+def object_space():
+    cmds.manipMoveContext(
+        "Move",
+        edit=True,
+        mode=0
+    )
+
+    cmds.manipRotateContext(
+        "RotateSuperContext",
+        edit=True,
+        mode=0
+    )
+
+    cmds.manipScaleContext(
+        "scaleSuperContext",
+        edit=True,
+        mode=0
+    )
+
+
+def world_space():
+    cmds.manipMoveContext(
+        "Move",
+        edit=True,
+        mode=2
+    )
+
+    cmds.manipRotateContext(
+        "RotateSuperContext",
+        edit=True,
+        mode=2
+    )
+
+    cmds.manipScaleContext(
+        "scaleSuperContext",
+        edit=True,
+        mode=2
+    )
