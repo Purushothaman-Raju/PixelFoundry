@@ -1,6 +1,6 @@
-# Pixel Foundry
+# Pixel Foundry 
 
-Pixel Foundry
+Pixel Foundry  - Still under developmet !! 
 Production Toolkit for Autodesk Maya
 Pixel Foundry is a custom Maya toolkit developed with a teaching-first approach. Instead of organizing tools as a collection of commands, it follows a structured modeling workflow — guiding beginners from creating primitives, transforming objects, understanding component selection, and performing essential modeling operations.
 
