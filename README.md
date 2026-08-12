@@ -52,7 +52,7 @@ The workspace is intended to grow beyond modeling into a broader **structured Ma
 * Beginner-friendly learning path
 * Production-oriented tool organization
 * Progressive expansion into other Maya workflows
-* **Maya 2027 — Version 1**
+
 
 ### Development Status
 
